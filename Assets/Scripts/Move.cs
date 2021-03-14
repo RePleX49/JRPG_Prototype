@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Move : MonoBehaviour
+public abstract class Move
 {
     protected int moveCost;
     protected Character moveUser;
@@ -27,13 +27,14 @@ public class Attack : Move
 
     void AttackTarget()
     {
+        Debug.Log(moveUser.GetName() + " attacked " + moveTarget.GetName());
         moveTarget.ApplyDamage(damage, moveUser);
     }
 }
 
 public class Heal : Move
 {
-    int healAmount = 8;
+    int healAmount = 10;
 
     public Heal(Character user)
     {
@@ -47,6 +48,7 @@ public class Heal : Move
 
     void HealSelf()
     {
+        Debug.Log(moveUser.GetName() + " used heal!");
         moveUser.ApplyHealing(healAmount);
     }
 }
